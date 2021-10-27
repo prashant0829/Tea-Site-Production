@@ -1,0 +1,329 @@
+* {
+  font-weight: 400;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 2px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(231, 231, 231);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 83, 28);
+  border-radius: 5px;
+  scroll-behavior: smooth;
+}
+.section-heading {
+  padding: 40px 0px 0px;
+  font-family: "Noto Serif", serif;
+  font-size: 2.443rem;
+  line-height: 1.333em;
+  font-weight: 500;
+}
+
+.heading-bottom-border {
+  margin: auto;
+  margin-bottom: 20px;
+  width: 60px;
+  height: 4px;
+  background-color: rgb(138, 212, 116);
+}
+
+.featured-product-section {
+}
+
+.featured-product {
+  /* padding: 10px; */
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  max-width: 80%;
+  transition: all 0.5s ease;
+}
+
+.featured-product-info {
+  width: 80%;
+  margin: auto;
+}
+.carousel-item-container,
+.featured-product {
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.carousel-item-container {
+  height: 70vh;
+  width: 100%;
+}
+.testimonial {
+  transition: 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    rgba(107, 107, 107, 0.1) 0px 6px 6px;
+}
+
+.featured-product:hover,
+.testimonial:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.featured-product img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80");
+
+  /* Set a specific height */
+
+  /* Create the parallax scrolling effect */
+  /* background-color: rgba(95, 143, 111, 0.8); */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax img {
+  width: 28px;
+}
+
+.parallax-heading {
+  font-family: "Noto Serif", serif !important;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: 0.8px;
+  font-style: italic;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.parallax-box {
+  background-color: rgb(61 85 12 / 50%);
+  color: white;
+}
+
+.big-texts {
+  z-index: 6;
+  font-family: Montserrat;
+  visibility: visible;
+  text-align: center;
+  line-height: 91px;
+  letter-spacing: -6px;
+  font-weight: 800;
+  font-size: 91px;
+  border-color: rgb(17, 17, 17);
+  border-style: none;
+  margin: 0px;
+  border-radius: 0px;
+  padding: 0px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  white-space: nowrap;
+  width: auto;
+  height: auto;
+  min-height: 0px;
+  min-width: 0px;
+  max-height: none;
+  max-width: none;
+  opacity: 1;
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform-origin: 50% 50% 0px;
+  color: #81b622 !important;
+}
+.navbar {
+  background-color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 40px;
+  color: #81b622;
+  font-family: "Noto Serif", serif;
+}
+.navbar-light .navbar-nav .nav-link:active {
+  color: #649600;
+  font-family: "Noto Serif", serif;
+}
+.navbar {
+  padding: 5px 0px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+
+.quality-section {
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.quality-section:first-child {
+  border-left: 0px solid white;
+}
+.quality-section:last-child {
+  border-right: 0px solid white;
+}
+.client-container {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0px !important;
+  justify-content: center;
+}
+.client-box {
+  height: 150px;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 10px;
+}
+.quality-box p {
+  font-weight: 500;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+}
+
+.form-control {
+  border-color: #81b622;
+}
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #81b622;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(129 182 34 / 40%);
+}
+.btn,
+.btn:hover,
+.btn:active,
+.btn:focus {
+  background-color: #81b622 !important;
+  border: #81b622 !important;
+}
+.btn:focus,
+.btn:active {
+  box-shadow: 0 0 0 0.25rem rgb(129 182 34 / 40%) !important;
+}
+
+.side-images {
+  max-width: 85px;
+  min-height: 60px;
+  margin: 0px 0px 10px 0px;
+  object-fit: cover;
+}
+.main-image {
+  max-width: 280px;
+  width: 100%;
+}
+.navbar-light .navbar-toggler {
+  color: white;
+}
+.loading-component {
+  animation: loading 5s ease-in-out infinite;
+}
+.welcome-text {
+  color: white;
+  animation: loadingtext 5s ease-in-out infinite;
+}
+.testimonial-box {
+  padding: 20px 120px 50px;
+}
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loadingtext {
+  0% {
+    color: white;
+  }
+  50% {
+    color: black;
+  }
+  100% {
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-light .navbar-nav .nav-link {
+    margin-left: 5px;
+  }
+
+  .featured-product {
+    margin: 10px 0px;
+    width: 100%;
+    max-width: 100%;
+    height: 420px;
+  }
+  .featured-product {
+  }
+  .big-texts {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    word-break: break-all;
+  }
+  .featured-product-info {
+    width: 100%;
+  }
+  .quality-section {
+    border: none;
+  }
+  .carousel-item-container {
+    height: 30vh;
+    width: 100%;
+  }
+  .quality-box {
+    flex-flow: column-reverse;
+  }
+  .card-img-top {
+    width: 100%;
+    height: 60vw;
+    object-fit: cover;
+  }
+  .product-image-section {
+    flex-flow: column-reverse;
+  }
+  .product-image-stack {
+    margin-top: 15px;
+    overflow: auto;
+  }
+  .side-images {
+    margin-right: 10px;
+    max-width: 60px;
+  }
+  .mission-box {
+    flex-flow: column;
+  }
+  .card-title {
+    margin-top: 15px;
+  }
+  .testimonial-box {
+    padding: 5px 5px 50px;
+  }
+  .section-heading {
+    padding: 40px 0px 0px;
+    font-family: "Noto Serif", serif;
+    font-size: 1.5rem;
+    line-height: 1.333em;
+    font-weight: 700;
+  }
+}
