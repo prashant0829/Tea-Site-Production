@@ -59,7 +59,11 @@ const Product = () => {
           <div className="col-xs-12 col-sm-7">
             <div className="">
               <h4 style={{ marginTop: "0px" }}>{product.title}</h4>
-              <p style={{ textAlign: "justify" }}>{product.desc}</p>
+              {/* <p style={{ textAlign: "justify" }}>{product.desc}</p> */}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: product.desc,
+                }}></div>
             </div>
           </div>
         </div>

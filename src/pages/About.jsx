@@ -11,18 +11,11 @@ const About = () => {
       </div>
       <div className="container mt-3" style={{ maxWidth: "1100px" }}>
         <div className="row quality-box">
-          <div className="col-lg-7 col-md-6 col-xs-12 p-4 d-flex align-items-center">
-            <p
-              className="pt-2 "
-              style={{
-                textAlign: "justify",
-                fontWeight: "400",
-                fontSize: "16px",
-                fontStyle: "italic",
-              }}>
-              {companyDetails.aboutContent}
-            </p>
-          </div>
+          <div
+            className="col-lg-7 col-md-6 col-xs-12 p-4 d-flex flex-column justify-content-center"
+            dangerouslySetInnerHTML={{
+              __html: companyDetails.aboutContent,
+            }}></div>
           <div
             className="col-lg-5 col-md-6 col-xs-12 p-4"
             style={{
@@ -65,18 +58,40 @@ const About = () => {
               alt=""
             />
           </div>
-          <div className="col-lg-7 col-md-6 col-xs-12 p-4 d-flex align-items-center">
-            <p
-              className=""
+          <div
+            className="col-lg-7 col-md-6 col-xs-12 p-4 d-flex flex-column justify-content-center"
+            dangerouslySetInnerHTML={{
+              __html: companyDetails.missionContent,
+            }}></div>
+        </div>
+      </div>
+      <div className="text-center mb-2">
+        <p className="section-heading">Quality Info</p>
+        <div className="heading-bottom-border"></div>
+      </div>
+      <div className="container mt-3" style={{ maxWidth: "1100px" }}>
+        <div className="row quality-box">
+          <div
+            className="col-lg-7 col-md-6 col-xs-12 p-4 d-flex flex-column justify-content-center"
+            dangerouslySetInnerHTML={{
+              __html: companyDetails.qualityContent,
+            }}></div>
+          <div
+            className="col-lg-5 col-md-6 col-xs-12 p-4"
+            style={{
+              textAlign: "center",
+            }}>
+            <img
+              src={companyDetails.qualityImage}
               style={{
-                textAlign: "justify",
-                textAlign: "justify",
-                fontWeight: "400",
-                fontSize: "16px",
-                fontStyle: "italic",
-              }}>
-              {companyDetails.missionContent}
-            </p>
+                maxWidth: "450px",
+                width: "100%",
+                objectFit: "cover",
+                borderRadius: "4px",
+                overflow: "hidden",
+              }}
+              alt=""
+            />
           </div>
         </div>
       </div>

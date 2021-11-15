@@ -15,6 +15,7 @@ import { db, storage } from "../../config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import ProgressBar from "../../components/ProgressBar";
 import { useSnackbar } from "notistack";
+import Wysiwyg from "../../components/Wysiwyg";
 
 const MissionInfo = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -166,13 +167,17 @@ const MissionInfo = () => {
                   <label for="company-missionContent" className="form-label">
                     Mission Text
                   </label>
-                  <textarea
+                  {/* <textarea
                     rows={6}
                     type="text"
                     className="form-control"
                     id="company-missionContent"
                     value={missionContent}
                     onChange={(e) => setMissionContent(e.target.value)}
+                  /> */}
+                  <Wysiwyg
+                    value={missionContent}
+                    setValue={setMissionContent}
                   />
                 </div>
               </div>

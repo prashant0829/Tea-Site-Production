@@ -17,25 +17,31 @@ const Categories = () => {
             allPosts.map((post, i) => {
               return (
                 <div className="col-xs-12 col-sm-6 col-md-4 p-4">
-                  <div className="card" style={{ border: "none" }}>
+                  <div
+                    className="card"
+                    style={{ border: "none", cursor: "pointer" }}
+                    onClick={() => {
+                      history.push(`/product/${post.id}`, post);
+                    }}
+                    data-aos="fade-up"
+                    data-aos-offset="-200"
+                    data-aos-duration="800"
+                    data-aos-easing="ease-in-out"
+                    data-aos-mirror="true"
+                    data-aos-once="false"
+                    data-aos-anchor-placement="top-center">
                     <img
                       src={post.url}
-                      className="card-img-top"
+                      className="card-img-top border shadow"
                       alt="..."
                       style={{ borderRadius: "4px" }}
                     />
-                    <div className="card-body p-1 pt-2">
-                      <h5 className="card-title ">{post.title}</h5>
-                      <p className="card-text" style={{ textAlign: "justify" }}>
-                        {`${post.desc}`.substring(0, 150) + " "}{" "}
-                        <span
-                          style={{ color: "#4285F4", cursor: "pointer" }}
-                          onClick={() => {
-                            history.push(`/product/${post.id}`, post);
-                          }}>
-                          read more...
-                        </span>
-                      </p>
+                    <div className="card-body p-1 pt-3">
+                      <h6
+                        style={{ fontSize: "18px" }}
+                        className="card-title text-center">
+                        {post.title}
+                      </h6>
                     </div>
                   </div>
                 </div>

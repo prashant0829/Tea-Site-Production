@@ -104,7 +104,7 @@
 }
 
 .parallax-box {
-  background-color: rgb(61 85 12 / 50%);
+  /* background-color: rgb(61 85 12 / 50%); */
   color: white;
 }
 
@@ -190,10 +190,13 @@ a {
 
 .card-img-top {
   width: 100%;
-  height: 20vw;
+  height: 25vw;
   object-fit: cover;
+  transition: 0.5s;
 }
-
+.card-img-top:hover {
+  box-shadow: 0 0.5rem 1rem rgb(63 138 102 / 50%) !important;
+}
 .form-control {
   border-color: #81b622;
 }

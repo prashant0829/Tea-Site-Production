@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   doc,
   setDoc,
@@ -15,6 +15,7 @@ import { db, storage } from "../../config";
 import ProgressBar from "../../components/ProgressBar";
 import { AuthContext } from "../../context/ContextApi";
 import { useSnackbar } from "notistack";
+import Wysiwyg from "../../components/Wysiwyg";
 
 const AddPost = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -27,7 +28,13 @@ const AddPost = () => {
   const [imageUploadPercent, setImageUploadPercent] = useState(0);
   const [open, setOpen] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
-  const [featured, setFeatured] = useState(false);
+  const [featured, setFeatured] = useState("false");
+  const [isEdit, setIsEdit] = useState(false);
+  const [editPostId, setEditPostId] = useState("");
+
+  useEffect(() => {
+    console.log(featured);
+  }, [featured]);
 
   const onImageChange = (e) => {
     const reader = new FileReader();
@@ -81,33 +88,47 @@ const AddPost = () => {
               break;
           }
         },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            addDoc(collection(db, "posts"), {
-              url: downloadURL,
-              title: postHeading,
-              desc: postDescription,
-              featured: featured,
-              ref: imageName,
-            })
-              .then((snap) => {
-                enqueueSnackbar("Post Saved Successfully", {
-                  variant: "success",
-                });
-                // console.log(snap);
-                setPostImage(null);
-                setPostHeading("");
-                setPostDescription("");
-                setPostLoading(false);
-                setOpen(false);
-                getPosts();
-                setFeatured(false);
-                setImageUploadPercent(0);
-              })
-              .catch((e) => {
-                // console.log(e);
+        async () => {
+          let snap;
+          try {
+            let downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            if (!isEdit) {
+              await addDoc(collection(db, "posts"), {
+                url: downloadURL,
+                title: postHeading,
+                desc: postDescription,
+                featured: featured,
+                ref: imageName,
               });
-          });
+            } else {
+              await setDoc(doc(db, "posts", editPostId), {
+                url: downloadURL,
+                title: postHeading,
+                desc: postDescription,
+                featured: featured,
+                ref: imageName,
+              });
+            }
+
+            enqueueSnackbar("Post Saved Successfully", {
+              variant: "success",
+            });
+            setPostImage(null);
+            setPostHeading("");
+            setPostDescription("");
+            setPostLoading(false);
+            setOpen(false);
+            setIsEdit(false);
+            getPosts();
+            setFeatured(false);
+            setImageUploadPercent(0);
+            setEditPostId("");
+          } catch (e) {
+            console.log(e);
+            enqueueSnackbar("Some Error Occured", {
+              variant: "error",
+            });
+          }
         }
       );
     } else {
@@ -133,6 +154,7 @@ const AddPost = () => {
       // console.log(error);
     }
   };
+
   const toggleFeatured = (id, value) => {
     // console.log("Here");
     try {
@@ -150,7 +172,7 @@ const AddPost = () => {
         {open ? (
           <>
             <div className="row">
-              <div className="col-xs-12 col-md-6 col-lg-4">
+              <div className="col-xs-12 col-md-6 col-lg-6">
                 <input
                   type="file"
                   accept="image/x-png,image/jpeg"
@@ -178,29 +200,17 @@ const AddPost = () => {
                   <label for="postDescription" className="form-label">
                     Post Description
                   </label>
-                  <textarea
-                    type="text"
-                    rows={6}
-                    className="form-control"
-                    id="postDescription"
+                  <Wysiwyg
                     value={postDescription}
-                    disabled={postLoading}
-                    onChange={(e) => setPostDescription(e.target.value)}
+                    setValue={setPostDescription}
                   />
                 </div>
                 <div className="mb-3">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value={featured}
-                      id="flexCheckDefault"
-                      onClick={() => setFeatured(!featured)}
-                    />
-                    <label className="form-check-label" for="flexCheckDefault">
-                      Featured Product
-                    </label>
-                  </div>
+                  <button
+                    className="btn btn-primary mb-2 me-2"
+                    onClick={() => setFeatured(!featured)}>
+                    {featured ? "Remove Featured" : "Add Featured"}
+                  </button>
                 </div>
               </div>
             </div>
@@ -219,6 +229,8 @@ const AddPost = () => {
                 setPostDescription("");
                 setOpen(false);
                 setPostLoading(false);
+                setFeatured(false);
+                setEditPostId("");
               }}>
               Cancel
             </button>
@@ -272,9 +284,21 @@ const AddPost = () => {
                         Delete
                       </button>
                       <button
-                        className="btn btn-primary mb-2"
+                        className="btn btn-primary mb-2 me-2"
                         onClick={() => toggleFeatured(post.id, post.featured)}>
                         {post.featured ? "Remove Featured" : "Add Featured"}
+                      </button>
+                      <button
+                        className="btn btn-primary mb-2"
+                        onClick={() => {
+                          setFeatured(true);
+                          setPostHeading(post.title);
+                          setPostDescription(post.desc);
+                          setEditPostId(post.id);
+                          setIsEdit(true);
+                          setOpen(true);
+                        }}>
+                        Edit
                       </button>
                     </td>
                   </tr>
